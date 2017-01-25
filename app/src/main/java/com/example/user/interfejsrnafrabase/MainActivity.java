@@ -1,52 +1,148 @@
+
 package com.example.user.interfejsrnafrabase;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import java.io.IOException;
+import java.io.InputStream;
 
-public class MainActivity extends AppCompatActivity {
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+    // URL Address
+    String url = "http://rnafrabase.cs.put.poznan.pl/";
+    ProgressDialog mProgressDialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        // Locate the Buttons in activity_main.xml
+        Button searchbutton = (Button) findViewById(R.id.search_button);
+        Button choosebutton = (Button) findViewById(R.id.choose_button);
+        Button advsearchbutton = (Button) findViewById(R.id.adv_search_button);
+
+        // Capture button click
+        choosebutton.setOnClickListener(new OnClickListener() {
+            public void onClick(View arg0) {
+                // Execute Title AsyncTask
+                new ChooseFile().execute();
             }
         });
+
+        // Capture button click
+        searchbutton.setOnClickListener(new OnClickListener() {
+            public void onClick(View arg0) {
+                // Execute Description AsyncTask
+                new SearchFrabase().execute();
+            }
+        });
+
+        // Capture button click
+        advsearchbutton.setOnClickListener(new OnClickListener() {
+            public void onClick(View arg0) {
+                // Execute Logo AsyncTask
+                new AdvSearch().execute();
+            }
+        });
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+    // Title AsyncTask
+    private class ChooseFile extends AsyncTask<Void, Void, Void> {
+        String title;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                Document document = Jsoup.connect(url).get();
+                // Get the html document title
+                title = document.title();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        protected void onPostExecute(Void result) {
+            // Set title into TextView
+            TextView txttitle = (TextView) findViewById(R.id.insert);
+            txttitle.setText(title);
+            mProgressDialog.dismiss();
+        }
     }
-}
+
+    // Description AsyncTask
+    private class SearchFrabase extends AsyncTask<Void, Void, Void> {
+        String desc;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressDialog = new ProgressDialog(MainActivity.this);
+            mProgressDialog.setTitle("RNA frabase");
+            mProgressDialog.setMessage("Searching...");
+            mProgressDialog.setIndeterminate(false);
+            mProgressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                Document document = Jsoup.connect(url).get();
+                // Using Elements to get the Meta data
+                Elements description = document
+                        .select("meta[name=description]");
+                // Locate the content attribute
+                desc = description.attr("content");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+    }
+
+    // Logo AsyncTask
+    private class AdvSearch extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            try {
+                // Connect to the web site
+                Document document = Jsoup.connect(url).get();
+                // Using Elements to get the class data
+                Elements img = document.select("a[class=brand brand-image] img[src]");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+//        @Override
+//        protected void onPostExecute(Void result) {
+            // Set downloaded image into ImageView
+//            ImageView logoimg = (ImageView) findViewById(R.id.logo);
+//            logoimg.setImageBitmap(bitmap);
+//            mProgressDialog.dismiss();
+        }
+    }
