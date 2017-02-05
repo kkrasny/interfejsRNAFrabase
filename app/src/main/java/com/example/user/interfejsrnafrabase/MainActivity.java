@@ -4,8 +4,10 @@ package com.example.user.interfejsrnafrabase;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import android.os.AsyncTask;
@@ -25,6 +27,7 @@ public class MainActivity extends Activity {
     // URL Address
     String url = "http://rnafrabase.cs.put.poznan.pl/";
     ProgressDialog mProgressDialog;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,10 +111,11 @@ public class MainActivity extends Activity {
                 // Connect to the web site
                 Document document = Jsoup.connect(url).get();
                 // Using Elements to get the Meta data
-                Elements description = document
-                        .select("meta[name=description]");
+                Element search = document.getElementById("send");
+             //           .select("meta[name=description]");
                 // Locate the content attribute
-                desc = description.attr("content");
+                //desc =
+                search.attr("content");
             } catch (IOException e) {
                 e.printStackTrace();
             }

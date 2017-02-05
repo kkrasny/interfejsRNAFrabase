@@ -3,8 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.user.interfejsrnafrabase.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/menu_search"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/search"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_structural"
+        android:orderInCategory="100"
+        android:title="@string/structural"
+        app:showAsAction="never">
+
+        <menu>
+            <item
+                android:id="@+id/menu2_resudue"
+                android:title="@string/residue"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/menu2_base"
+                android:title="@string/base"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/menu2_multi"
+                android:title="@string/multi"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/menu2_dinucl"
+                android:title="@string/dinucl"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/menu2_stem"
+                android:title="@string/stem"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/menu2_loop"
+                android:title="@string/loop"
+                app:showAsAction="never" />
+
+        </menu>
+
+
+
+    </item>
+    <item
+        android:id="@+id/menu_secondary"
+        android:orderInCategory="100"
+        android:title="@string/secondary"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_help"
+        android:orderInCategory="100"
+        android:title="@string/help"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_about"
+        android:orderInCategory="100"
+        android:title="@string/about"
         app:showAsAction="never" />
 </menu>
