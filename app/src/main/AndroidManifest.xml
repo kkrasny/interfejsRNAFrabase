@@ -3,17 +3,26 @@
     package="com.example.user.interfejsrnafrabase">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Interface"
         android:supportsRtl="true"
-        android:theme="@style/no_title">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".AdvancedSearchActivity"
+            android:label="@string/title_activity_advanced_search"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".New"
+            android:label="@string/title_activity_new"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:label="Interface"
-            android:theme="@style/no_title">
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,11 +30,33 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AdvancedSearchActivity"
-            android:label="@string/title_activity_advanced_search"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ResultsActivity" />
-        <activity android:name=".Help"></activity>
+            android:name=".Residue"
+            android:label="@string/title_activity_residue"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Basepair"
+            android:label="@string/title_activity_basepair"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Multiplet"
+            android:label="@string/title_activity_multiplet"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".DinuclStep"
+            android:label="@string/title_activity_dinucl_step"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Stem"
+            android:label="@string/title_activity_stem"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Loop"
+            android:label="@string/title_activity_loop"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".SecondaryStruct"
+            android:label="@string/title_activity_secondary_struct"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

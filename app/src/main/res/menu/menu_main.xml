@@ -5,8 +5,7 @@
     <item
         android:id="@+id/menu_search"
         android:orderInCategory="100"
-        android:title="@string/search"
-        app:showAsAction="never" />
+        android:title="@string/search" />
     <item
         android:id="@+id/menu_structural"
         android:orderInCategory="100"
@@ -15,7 +14,7 @@
 
         <menu>
             <item
-                android:id="@+id/menu2_resudue"
+                android:id="@+id/menu2_residue"
                 android:title="@string/residue"
                 app:showAsAction="never" />
             <item
@@ -55,8 +54,18 @@
         android:title="@string/help"
         app:showAsAction="never" />
     <item
-        android:id="@+id/menu_about"
+    android:id="@+id/menu_about"
+    android:orderInCategory="100"
+    android:title="@string/about"
+    app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_contact"
         android:orderInCategory="100"
-        android:title="@string/about"
+        android:title="@string/contact"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_links"
+        android:orderInCategory="100"
+        android:title="@string/links"
         app:showAsAction="never" />
 </menu>
