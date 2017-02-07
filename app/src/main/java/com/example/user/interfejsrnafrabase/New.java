@@ -1,68 +1,73 @@
 package com.example.user.interfejsrnafrabase;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.TextView;
-
+import android.webkit.WebView;
+import android.os.AsyncTask;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.URL;
 
-public class AdvancedSearchActivity extends AppCompatActivity {
+public class New extends AppCompatActivity {
+
     Intent i;
-    String url = "http://rnafrabase.cs.put.poznan.pl/";
-    ProgressDialog aProgressDialog;
+    String url_help = "http://rnafrabase.cs.put.poznan.pl/?act=help";
+    String url_about = "http://rnafrabase.cs.put.poznan.pl/?act=about";
+    String url_links = "http://rnafrabase.cs.put.poznan.pl/?act=links";
+    String url_contact = "http://rnafrabase.cs.put.poznan.pl/?act=contact%20us";
+    Document help;
+    Document about;
+    Document links;
+    Document contact;
+    Document doc;
+    Element cont;
+
+    WebView web;
+    String value = "Help";
+
+
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_advanced_search);
+        setContentView(R.layout.activity_new);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        web=(WebView)findViewById(R.id.webView);
 
-        Button search = (Button) findViewById(R.id.button2);
+        if(value == "Help"){
+            new getHelp().execute();
+        }
+        else if(value == "About"){
+            new getAbout().execute();
+            web.loadUrl(url_about);
+        }
+        else if(value == "Links"){
+            new getLinks().execute();
+        }
+        else if(value == "Contact"){
+            new getContact().execute();
+            web.loadUrl(url_contact);
+        }
 
-        boolean Case = ((CheckBox) findViewById(R.id.checkCase)).isChecked();
-        boolean Add = ((CheckBox) findViewById(R.id.checkAdd)).isChecked();
-        boolean Include = ((CheckBox) findViewById(R.id.checkInclude)).isChecked();
-        boolean Strand = ((CheckBox) findViewById(R.id.checkStrand)).isChecked();
-        boolean Xray = ((CheckBox) findViewById(R.id.checkXray)).isChecked();
-        boolean NMR = ((CheckBox) findViewById(R.id.checkNMR)).isChecked();
-        boolean Electron = ((CheckBox) findViewById(R.id.checkElectron)).isChecked();
-        boolean Other = ((CheckBox) findViewById(R.id.checkOther)).isChecked();
-        final EditText sequence = (EditText) findViewById(R.id.editText3);
-        sequence.setText(Html.fromHtml(getString(R.string.table)));
+        //cont = doc.getElementById("framain");
+        //String elem = cont.html();
+        //web.loadData(elem, "text/html", "UTF-8");
 
-
-
-
-
-        search.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                // Execute Description AsyncTask
-
-                new Search().execute();
-            }
-        });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -110,18 +115,22 @@ public class AdvancedSearchActivity extends AppCompatActivity {
             case R.id.menu_help:
                 i = new Intent(getApplicationContext(), New.class);
                 startActivity(i);
+                i.putExtra(value, "Help");
                 return true;
             case R.id.menu_about:
                 i = new Intent(getApplicationContext(), New.class);
                 startActivity(i);
+                i.putExtra(value, "About");
                 return true;
             case R.id.menu_contact:
                 i = new Intent(getApplicationContext(), New.class);
                 startActivity(i);
+                i.putExtra(value, "Contact");
                 return true;
             case R.id.menu_links:
                 i = new Intent(getApplicationContext(), New.class);
                 startActivity(i);
+                i.putExtra(value, "Links");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -130,38 +139,56 @@ public class AdvancedSearchActivity extends AppCompatActivity {
 
 
 
-
-    private class Search extends AsyncTask<Void, Void, Void> {
+    private class getHelp extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             try {
                 // Connect to the web site
-                Document document = Jsoup.connect(url).get();
-
+                doc = Jsoup.connect(url_help).get();
             } catch (IOException e) {
                 e.printStackTrace();
             }
             return null;
         }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            aProgressDialog = new ProgressDialog(AdvancedSearchActivity.this);
-            aProgressDialog.setTitle("RNA frabase");
-            aProgressDialog.setMessage("Searching...");
-            aProgressDialog.setIndeterminate(false);
-            aProgressDialog.show();
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-
-            aProgressDialog.dismiss();
-        }
-
     }
 
+    private class getAbout extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                doc = Jsoup.connect(url_about).get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 
+    private class getLinks extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                doc = Jsoup.connect(url_links).get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 
+    private class getContact extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                doc = Jsoup.connect(url_contact).get();
+                // Using Elements to get the class data
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 }
