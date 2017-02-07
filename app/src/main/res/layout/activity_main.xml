@@ -87,24 +87,15 @@
             android:layout_alignParentStart="true" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textMultiLine"
             android:text="@string/insert"
             android:ems="10"
             android:id="@+id/editText"
-            android:layout_marginBottom="75dp"
+            android:layout_marginBottom="25dp"
             android:layout_above="@+id/spinner"
-            android:layout_alignStart="@+id/button" />
-
-        <Button
-            android:text="Choose file"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/choose_button"
-            android:layout_marginBottom="43dp"
-            android:layout_above="@+id/button"
-            android:layout_alignStart="@+id/textView" />
+            android:layout_alignParentStart="true" />
 
         <Button
             android:text="Load"
@@ -112,7 +103,17 @@
             android:layout_height="wrap_content"
             android:id="@+id/button"
             android:layout_above="@+id/editText"
-            android:layout_alignStart="@+id/choose_button" />
+            android:layout_alignStart="@+id/choose_button"
+            android:layout_marginBottom="31dp" />
+
+        <Button
+            android:text="Choose file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/choose_button"
+            android:layout_marginBottom="17dp"
+            android:layout_above="@+id/button"
+            android:layout_alignStart="@+id/textView" />
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
