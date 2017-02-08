@@ -10,11 +10,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class Loop extends AppCompatActivity {
 
     Intent i;
     String value;
+    String ExL;
+    String[] exp_loop = {"Any","X-Ray", "NMR", "Electron Microscopy", "Other"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,41 @@ public class Loop extends AppCompatActivity {
         setContentView(R.layout.activity_loop);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Spinner spinnerE = (Spinner) findViewById(R.id.spinner23);
+        ArrayAdapter<String> adapterE = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, exp_loop);
+        //final Spinner spinnerE = (Spinner)findViewById(R.id.spinner2);
+        spinnerE.setAdapter(adapterE);
+        spinnerE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
+                // ta metoda wykonuje się za każdym razem, gdy zostanie wybrany jakiś element z naszej listy
+                switch ((int) position) {        //tutaj musimy przerzutować wartośc position na int, bo jest ona typu long, a typu long nie można używać do instrukcji switch
+
+                    case 0:
+                        ExL = exp_loop[0];
+                        break;
+                    case 1:
+                        ExL = exp_loop[1];
+                        break;
+                    case 2:
+                        ExL = exp_loop[2];
+                        break;
+                    case 3:
+                        ExL = exp_loop[3];
+                        break;
+                    case 4:
+                        ExL = exp_loop[4];
+                        break;
+
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                ExL= "Any";
+                // ta metoda wykonuje sie gdy lista zostanie wybrana, ale nie zostanie wybrany żaden element z listy
+            }
+        });
 
     }
 

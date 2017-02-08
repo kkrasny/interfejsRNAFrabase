@@ -49,6 +49,7 @@ public class New extends AppCompatActivity {
 
         if(value == "Help"){
             new getHelp().execute();
+            web.loadUrl(url_about);
         }
         else if(value == "About"){
             new getAbout().execute();
@@ -56,6 +57,7 @@ public class New extends AppCompatActivity {
         }
         else if(value == "Links"){
             new getLinks().execute();
+            web.loadUrl(url_about);
         }
         else if(value == "Contact"){
             new getContact().execute();
@@ -145,6 +147,7 @@ public class New extends AppCompatActivity {
             try {
                 // Connect to the web site
                 doc = Jsoup.connect(url_help).get();
+                //Element help =
             } catch (IOException e) {
                 e.printStackTrace();
             }

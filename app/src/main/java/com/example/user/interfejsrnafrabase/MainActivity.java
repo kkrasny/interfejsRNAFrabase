@@ -50,11 +50,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         // Locate the Buttons in activity_main.xml
         Button searchbutton = (Button) findViewById(R.id.search_button);
-        Button choosebutton = (Button) findViewById(R.id.choose_button);
+        //Button choosebutton = (Button) findViewById(R.id.choose_button);
         Button advsearchbutton = (Button) findViewById(R.id.adv_search_button);
 
         final EditText sequence = (EditText) findViewById(R.id.editText);
-
+        final TextView glowny = (TextView) findViewById(R.id.textView68);
+        glowny.setText(Html.fromHtml(getString(R.string.glowny)));
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, elements);
         final Spinner spinnerP = (Spinner)findViewById(R.id.spinner);
@@ -98,11 +99,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // Capture button click
-        choosebutton.setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
+        //choosebutton.setOnClickListener(new OnClickListener() {
+        //    public void onClick(View arg0) {
 
-            }
-        });
+        //    }
+       // });
 
         // Capture button click
         searchbutton.setOnClickListener(new OnClickListener() {

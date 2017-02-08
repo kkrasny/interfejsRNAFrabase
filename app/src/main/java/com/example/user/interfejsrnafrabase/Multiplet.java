@@ -10,11 +10,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class Multiplet extends AppCompatActivity {
 
     Intent i;
     String value;
+    String R1, R2, R3, ExM;
+    String[] res_str1 = {"Any","A", "C", "G", "U", "a", "c", "g", "u"};
+    String[] res_str2 = {"Any","A", "C", "G", "U", "a", "c", "g", "u"};
+    String[] res_str3 = {"Any","A", "C", "G", "U", "a", "c", "g", "u"};
+    String[] exp_meth = {"Any","X-Ray", "NMR", "Electron Microscopy", "Other"};
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +32,184 @@ public class Multiplet extends AppCompatActivity {
         setContentView(R.layout.activity_multiplet);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        Spinner spinnerR1 = (Spinner) findViewById(R.id.spinner22);
+        ArrayAdapter<String> adapterR1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res_str1);
+        //final Spinner spinnerE = (Spinner)findViewById(R.id.spinner2);
+        spinnerR1.setAdapter(adapterR1);
+        spinnerR1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
+                // ta metoda wykonuje się za każdym razem, gdy zostanie wybrany jakiś element z naszej listy
+                switch ((int) position) {        //tutaj musimy przerzutować wartośc position na int, bo jest ona typu long, a typu long nie można używać do instrukcji switch
+
+                    case 0:
+                        R1 = res_str1[0];
+                        break;
+                    case 1:
+                        R1= res_str1[1];
+                        break;
+                    case 2:
+                        R1 = res_str1[2];
+                        break;
+                    case 3:
+                        R1 = res_str1[3];
+                        break;
+                    case 4:
+                        R1 = res_str1[4];
+                        break;
+                    case 5:
+                        R1 = res_str1[5];
+                        break;
+                    case 6:
+                        R1 = res_str1[6];
+                        break;
+                    case 7:
+                        R1 = res_str1[7];
+                        break;
+                    case 8:
+                        R1 = res_str1[8];
+                        break;
+
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                R1 = "Any";
+                // ta metoda wykonuje sie gdy lista zostanie wybrana, ale nie zostanie wybrany żaden element z listy
+            }
+        });
+
+        Spinner spinnerR3 = (Spinner) findViewById(R.id.spinner20);
+        ArrayAdapter<String> adapterR3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res_str3);
+        //final Spinner spinnerE = (Spinner)findViewById(R.id.spinner2);
+        spinnerR3.setAdapter(adapterR3);
+        spinnerR3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
+                // ta metoda wykonuje się za każdym razem, gdy zostanie wybrany jakiś element z naszej listy
+                switch ((int) position) {        //tutaj musimy przerzutować wartośc position na int, bo jest ona typu long, a typu long nie można używać do instrukcji switch
+
+                    case 0:
+                        R3 = res_str3[0];
+                        break;
+                    case 1:
+                        R3= res_str3[1];
+                        break;
+                    case 2:
+                        R3 = res_str3[2];
+                        break;
+                    case 3:
+                        R3 = res_str3[3];
+                        break;
+                    case 4:
+                        R3 = res_str3[4];
+                        break;
+                    case 5:
+                        R3 = res_str3[5];
+                        break;
+                    case 6:
+                        R3 = res_str3[6];
+                        break;
+                    case 7:
+                        R3 = res_str3[7];
+                        break;
+                    case 8:
+                        R3 = res_str3[8];
+                        break;
+
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                R3 = "Any";
+                // ta metoda wykonuje sie gdy lista zostanie wybrana, ale nie zostanie wybrany żaden element z listy
+            }
+        });
+
+        Spinner spinnerR2 = (Spinner) findViewById(R.id.spinner21);
+        ArrayAdapter<String> adapterR2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res_str2);
+        //final Spinner spinnerE = (Spinner)findViewById(R.id.spinner2);
+        spinnerR2.setAdapter(adapterR2);
+        spinnerR2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
+                // ta metoda wykonuje się za każdym razem, gdy zostanie wybrany jakiś element z naszej listy
+                switch ((int) position) {        //tutaj musimy przerzutować wartośc position na int, bo jest ona typu long, a typu long nie można używać do instrukcji switch
+
+                    case 0:
+                        R2 = res_str2[0];
+                        break;
+                    case 1:
+                        R2= res_str2[1];
+                        break;
+                    case 2:
+                        R2 = res_str2[2];
+                        break;
+                    case 3:
+                        R2 = res_str2[3];
+                        break;
+                    case 4:
+                        R2 = res_str2[4];
+                        break;
+                    case 5:
+                        R2 = res_str2[5];
+                        break;
+                    case 6:
+                        R2 = res_str2[6];
+                        break;
+                    case 7:
+                        R2 = res_str2[7];
+                        break;
+                    case 8:
+                        R2 = res_str2[8];
+                        break;
+
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                R2 = "Any";
+                // ta metoda wykonuje sie gdy lista zostanie wybrana, ale nie zostanie wybrany żaden element z listy
+            }
+        });
+
+        Spinner spinnerE = (Spinner) findViewById(R.id.spinner19);
+        ArrayAdapter<String> adapterE = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, exp_meth);
+        //final Spinner spinnerE = (Spinner)findViewById(R.id.spinner2);
+        spinnerE.setAdapter(adapterE);
+        spinnerE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
+                // ta metoda wykonuje się za każdym razem, gdy zostanie wybrany jakiś element z naszej listy
+                switch ((int) position) {        //tutaj musimy przerzutować wartośc position na int, bo jest ona typu long, a typu long nie można używać do instrukcji switch
+
+                    case 0:
+                        ExM = exp_meth[0];
+                        break;
+                    case 1:
+                        ExM = exp_meth[1];
+                        break;
+                    case 2:
+                        ExM = exp_meth[2];
+                        break;
+                    case 3:
+                        ExM = exp_meth[3];
+                        break;
+                    case 4:
+                        ExM = exp_meth[4];
+                        break;
+
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                ExM = "Any";
+                // ta metoda wykonuje sie gdy lista zostanie wybrana, ale nie zostanie wybrany żaden element z listy
+            }
+        });
+
     }
 
     @Override
