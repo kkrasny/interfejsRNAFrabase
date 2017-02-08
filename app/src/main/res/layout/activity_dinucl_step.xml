@@ -19,8 +19,258 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/PopupOverlay" />
 
+
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_dinucl_step" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".MainActivity">
 
- </android.support.design.widget.CoordinatorLayout>
+
+        <TextView
+            android:text="Residue of the 2nd strand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView62"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="13dp"
+            android:id="@+id/textView63" />
+
+        <TextView
+            android:text="Shift (Dx): "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView70"
+            android:layout_alignStart="@+id/textView70"
+            android:layout_marginTop="12dp"
+            android:id="@+id/textView71" />
+
+        <TextView
+            android:text="Slide (Dy):"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView71"
+            android:layout_alignStart="@+id/textView71"
+            android:layout_marginTop="20dp"
+            android:id="@+id/textView72" />
+
+        <TextView
+            android:text="Rise (Dz):"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView72"
+            android:layout_alignStart="@+id/textView72"
+            android:layout_marginTop="13dp"
+            android:id="@+id/textView73" />
+
+        <TextView
+            android:text="Tilt (τ):"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView73"
+            android:layout_alignStart="@+id/textView73"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView74" />
+
+        <TextView
+            android:text="Roll (ρ):"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView74"
+            android:layout_alignStart="@+id/textView74"
+            android:layout_marginTop="16dp"
+            android:id="@+id/textView75" />
+
+        <TextView
+            android:text="Twist (Ω):"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView75"
+            android:layout_alignStart="@+id/textView75"
+            android:layout_marginTop="16dp"
+            android:id="@+id/textView76" />
+
+        <TextView
+            android:text="Include all  models of the structure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView76"
+            android:layout_alignStart="@+id/textView76"
+            android:layout_marginTop="13dp"
+            android:id="@+id/textView77" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox10"
+            android:layout_alignBaseline="@+id/textView77"
+            android:layout_alignBottom="@+id/textView77"
+            android:layout_alignEnd="@+id/button8" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView71"
+            android:id="@+id/spinner28"
+            android:layout_alignEnd="@+id/checkBox10" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner27"
+            android:layout_alignTop="@+id/textView72"
+            android:layout_alignStart="@+id/spinner28"
+            android:layout_alignEnd="@+id/spinner28" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner29"
+            android:layout_alignTop="@+id/textView73"
+            android:layout_alignStart="@+id/spinner27"
+            android:layout_alignEnd="@+id/spinner27" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner30"
+            android:layout_alignTop="@+id/textView74"
+            android:layout_alignStart="@+id/spinner29"
+            android:layout_alignEnd="@+id/spinner29" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner32"
+            android:layout_alignTop="@+id/textView75"
+            android:layout_alignStart="@+id/spinner30"
+            android:layout_alignEnd="@+id/spinner30" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner31"
+            android:layout_alignTop="@+id/textView76"
+            android:layout_alignEnd="@+id/checkBox10"
+            android:layout_alignStart="@+id/spinner32" />
+
+        <TextView
+            android:text="Inter base pair parameters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:id="@+id/textView70"
+            android:textStyle="bold"
+            android:layout_below="@+id/spinner26"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:id="@+id/spinner26"
+            android:layout_below="@+id/textView67"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/textView67" />
+
+        <TextView
+            android:text="Experimental method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:id="@+id/textView67"
+            android:textStyle="bold"
+            android:layout_below="@+id/textView66"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="Residue of the 2nd strand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView66"
+            android:layout_below="@+id/textView65"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="9dp" />
+
+        <TextView
+            android:text="Residue of the 1st strand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:id="@+id/textView65"
+            android:layout_below="@+id/textView64"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="Search"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="12dp"
+            android:id="@+id/button8"
+            android:layout_alignBottom="@+id/textView69"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:text="First basepair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="27dp"
+            android:id="@+id/textView69"
+            android:textStyle="bold"
+            android:layout_above="@+id/textView63"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="Residue of the 1st strand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="97dp"
+            android:id="@+id/textView62"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="Second base pair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:id="@+id/textView64"
+            android:textStyle="bold"
+            android:layout_below="@+id/textView63"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView67"
+            android:id="@+id/spinner34"
+            android:layout_alignEnd="@+id/spinner28" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner35"
+            android:layout_below="@+id/textView64"
+            android:layout_alignEnd="@+id/spinner34" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner36"
+            android:layout_alignTop="@+id/textView63"
+            android:layout_alignEnd="@+id/spinner35" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner33"
+            android:layout_alignTop="@+id/textView62"
+            android:layout_alignEnd="@+id/spinner36" />
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
