@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.user.interfejsrnafrabase.SecondaryStruct">
+    tools:context="com.example.user.interfejsrnafrabase.Help">
 
-    <include layout="@layout/content_secondary_struct" />
+    <include layout="@layout/content_help" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             <WebView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/webView6">
+                android:id="@+id/webView2">
             </WebView>
         </ScrollView>
 
