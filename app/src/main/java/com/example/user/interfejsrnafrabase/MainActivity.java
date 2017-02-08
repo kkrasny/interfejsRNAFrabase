@@ -56,10 +56,9 @@ public class MainActivity extends AppCompatActivity {
         final EditText sequence = (EditText) findViewById(R.id.editText);
         final TextView glowny = (TextView) findViewById(R.id.textView68);
         glowny.setText(Html.fromHtml(getString(R.string.glowny)));
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinnerP = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, elements);
-        final Spinner spinnerP = (Spinner)findViewById(R.id.spinner);
-        spinner.setAdapter(adapter);
+        spinnerP.setAdapter(adapter);
         spinnerP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
@@ -170,24 +169,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 return true;
             case R.id.menu_help:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Help.class);
                 startActivity(i);
-                i.putExtra(value, "Help");
                 return true;
             case R.id.menu_about:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), About.class);
                 startActivity(i);
-                i.putExtra(value, "About");
                 return true;
             case R.id.menu_contact:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Contact.class);
                 startActivity(i);
-                i.putExtra(value, "Contact");
                 return true;
             case R.id.menu_links:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Links.class);
                 startActivity(i);
-                i.putExtra(value, "Links");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

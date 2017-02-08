@@ -25,18 +25,10 @@ public class New extends AppCompatActivity {
     String url_about = "http://rnafrabase.cs.put.poznan.pl/?act=about";
     String url_links = "http://rnafrabase.cs.put.poznan.pl/?act=links";
     String url_contact = "http://rnafrabase.cs.put.poznan.pl/?act=contact%20us";
-    Document help;
-    Document about;
-    Document links;
-    Document contact;
     Document doc;
     Element cont;
 
     WebView web;
-    String value = "Help";
-
-
-
 
 
     @Override
@@ -47,28 +39,11 @@ public class New extends AppCompatActivity {
         setSupportActionBar(toolbar);
         web=(WebView)findViewById(R.id.webView);
 
-        if(value == "Help"){
-            new getHelp().execute();
-            web.loadUrl(url_about);
-        }
-        else if(value == "About"){
-            new getAbout().execute();
-            web.loadUrl(url_about);
-        }
-        else if(value == "Links"){
-            new getLinks().execute();
-            web.loadUrl(url_about);
-        }
-        else if(value == "Contact"){
-            new getContact().execute();
-            web.loadUrl(url_contact);
-        }
 
-        //cont = doc.getElementById("framain");
-        //String elem = cont.html();
-        //web.loadData(elem, "text/html", "UTF-8");
 
-    }
+            //new getHelp().execute();
+            web.loadUrl(url_help);
+        }
 
 
     @Override
@@ -115,24 +90,20 @@ public class New extends AppCompatActivity {
                 startActivity(ijj);
                 return true;
             case R.id.menu_help:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Help.class);
                 startActivity(i);
-                i.putExtra(value, "Help");
                 return true;
             case R.id.menu_about:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), About.class);
                 startActivity(i);
-                i.putExtra(value, "About");
                 return true;
             case R.id.menu_contact:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Contact.class);
                 startActivity(i);
-                i.putExtra(value, "Contact");
                 return true;
             case R.id.menu_links:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Links.class);
                 startActivity(i);
-                i.putExtra(value, "Links");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -148,46 +119,6 @@ public class New extends AppCompatActivity {
                 // Connect to the web site
                 doc = Jsoup.connect(url_help).get();
                 //Element help =
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
-
-    private class getAbout extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                // Connect to the web site
-                doc = Jsoup.connect(url_about).get();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
-
-    private class getLinks extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                // Connect to the web site
-                doc = Jsoup.connect(url_links).get();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
-
-    private class getContact extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                // Connect to the web site
-                doc = Jsoup.connect(url_contact).get();
-                // Using Elements to get the class data
             } catch (IOException e) {
                 e.printStackTrace();
             }

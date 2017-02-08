@@ -1,6 +1,7 @@
 package com.example.user.interfejsrnafrabase;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,17 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-public class SecondaryStruct extends AppCompatActivity {
+import java.io.IOException;
 
+public class SecondaryStruct extends AppCompatActivity {
     Intent i;
-    String value;
-    Document doc;
-    Element cont;
+    String url_secondary = "http://rnafrabase.cs.put.poznan.pl/?act=secondary%20structures";
     WebView web;
-    String url_sec = "http://rnafrabase.cs.put.poznan.pl/?act=secondary%20structures";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,9 @@ public class SecondaryStruct extends AppCompatActivity {
         setContentView(R.layout.activity_secondary_struct);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        web=(WebView)findViewById(R.id.webView);
+        web=(WebView)findViewById(R.id.webView6);
 
+        web.loadUrl(url_secondary);
     }
 
 
@@ -79,27 +81,24 @@ public class SecondaryStruct extends AppCompatActivity {
                 startActivity(ijj);
                 return true;
             case R.id.menu_help:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Help.class);
                 startActivity(i);
-                i.putExtra(value, "Help");
                 return true;
             case R.id.menu_about:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), About.class);
                 startActivity(i);
-                i.putExtra(value, "About");
                 return true;
             case R.id.menu_contact:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Contact.class);
                 startActivity(i);
-                i.putExtra(value, "Contact");
                 return true;
             case R.id.menu_links:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Links.class);
                 startActivity(i);
-                i.putExtra(value, "Links");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

@@ -1,6 +1,8 @@
 package com.example.user.interfejsrnafrabase;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,11 +15,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
 
 public class Basepair extends AppCompatActivity {
     Intent i;
     String value;
+    String url = "http://rnafrabase.cs.put.poznan.pl/";
+    ProgressDialog bProgressDialog;
     String Re1, Re2, ExB, W, Sae, Sh, St, Sta, Bu, Op, P;
     String[] westhof = {"Any","H/H cis", "H/H tran", "H/S cis", "H/S tran", "H/W cis", "H/W tran",
             "S/H cis", "S/H tran", "S/S cis", "S/S tran", "S/W cis", "S/W tran", "W/H cis",
@@ -47,6 +57,8 @@ public class Basepair extends AppCompatActivity {
         setContentView(R.layout.activity_basepair);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Button search = (Button) findViewById(R.id.button4);
 
         Spinner spinnerR1 = (Spinner) findViewById(R.id.spinner8);
         ArrayAdapter<String> adapterR1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res_str1);
@@ -590,6 +602,14 @@ public class Basepair extends AppCompatActivity {
             }
         });
 
+
+        search.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                // Execute Description AsyncTask
+
+                new Search().execute();
+            }
+        });
     }
 
     @Override
@@ -636,28 +656,58 @@ public class Basepair extends AppCompatActivity {
                 startActivity(ijj);
                 return true;
             case R.id.menu_help:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Help.class);
                 startActivity(i);
-                i.putExtra(value, "Help");
                 return true;
             case R.id.menu_about:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), About.class);
                 startActivity(i);
-                i.putExtra(value, "About");
                 return true;
             case R.id.menu_contact:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Contact.class);
                 startActivity(i);
-                i.putExtra(value, "Contact");
                 return true;
             case R.id.menu_links:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Links.class);
                 startActivity(i);
-                i.putExtra(value, "Links");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+
+
+
+
+    private class Search extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                Document document = Jsoup.connect(url).get();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            bProgressDialog = new ProgressDialog(Basepair.this);
+            bProgressDialog.setTitle("RNA frabase");
+            bProgressDialog.setMessage("Searching...");
+            bProgressDialog.setIndeterminate(false);
+            bProgressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+
+            bProgressDialog.dismiss();
+        }
+
+    }
 }

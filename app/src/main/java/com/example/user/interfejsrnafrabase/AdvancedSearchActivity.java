@@ -108,19 +108,19 @@ public class AdvancedSearchActivity extends AppCompatActivity {
                 startActivity(ijj);
                 return true;
             case R.id.menu_help:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Help.class);
                 startActivity(i);
                 return true;
             case R.id.menu_about:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), About.class);
                 startActivity(i);
                 return true;
             case R.id.menu_contact:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Contact.class);
                 startActivity(i);
                 return true;
             case R.id.menu_links:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Links.class);
                 startActivity(i);
                 return true;
             default:

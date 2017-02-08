@@ -1,6 +1,5 @@
 package com.example.user.interfejsrnafrabase;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,78 +11,37 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
+import android.webkit.WebView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import java.io.IOException;
 
-public class Loop extends AppCompatActivity {
-
+public class Contact extends AppCompatActivity {
     Intent i;
-    String value;
-    String url = "http://rnafrabase.cs.put.poznan.pl/";
-    ProgressDialog lProgressDialog;
-    String ExL;
-    String[] exp_loop = {"Any","X-Ray", "NMR", "Electron Microscopy", "Other"};
+    String url_help = "http://rnafrabase.cs.put.poznan.pl/?act=help";
+    String url_about = "http://rnafrabase.cs.put.poznan.pl/?act=about";
+    String url_links = "http://rnafrabase.cs.put.poznan.pl/?act=links";
+    String url_contact = "http://rnafrabase.cs.put.poznan.pl/?act=contact%20us";
+    Document doc;
+    Element cont;
+
+    WebView web;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loop);
+        setContentView(R.layout.activity_contact);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        web=(WebView)findViewById(R.id.webView3);
 
-        Button search = (Button) findViewById(R.id.button6);
-
-        Spinner spinnerE = (Spinner) findViewById(R.id.spinner23);
-        ArrayAdapter<String> adapterE = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, exp_loop);
-        //final Spinner spinnerE = (Spinner)findViewById(R.id.spinner2);
-        spinnerE.setAdapter(adapterE);
-        spinnerE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int id, long position) {
-                // ta metoda wykonuje się za każdym razem, gdy zostanie wybrany jakiś element z naszej listy
-                switch ((int) position) {        //tutaj musimy przerzutować wartośc position na int, bo jest ona typu long, a typu long nie można używać do instrukcji switch
-
-                    case 0:
-                        ExL = exp_loop[0];
-                        break;
-                    case 1:
-                        ExL = exp_loop[1];
-                        break;
-                    case 2:
-                        ExL = exp_loop[2];
-                        break;
-                    case 3:
-                        ExL = exp_loop[3];
-                        break;
-                    case 4:
-                        ExL = exp_loop[4];
-                        break;
-
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                ExL= "Any";
-                // ta metoda wykonuje sie gdy lista zostanie wybrana, ale nie zostanie wybrany żaden element z listy
-            }
-        });
-
-        search.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                // Execute Description AsyncTask
-
-                new Search().execute();
-            }
-        });
-
+        web.loadUrl(url_contact);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -149,35 +107,18 @@ public class Loop extends AppCompatActivity {
         }
     }
 
-    private class Search extends AsyncTask<Void, Void, Void> {
+
+
+    private class getContact extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             try {
                 // Connect to the web site
-                Document document = Jsoup.connect(url).get();
-
+                doc = Jsoup.connect(url_contact).get();
             } catch (IOException e) {
                 e.printStackTrace();
             }
             return null;
         }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            lProgressDialog = new ProgressDialog(Loop.this);
-            lProgressDialog.setTitle("RNA frabase");
-            lProgressDialog.setMessage("Searching...");
-            lProgressDialog.setIndeterminate(false);
-            lProgressDialog.show();
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-
-            lProgressDialog.dismiss();
-        }
-
     }
 }
-

@@ -1,6 +1,8 @@
 package com.example.user.interfejsrnafrabase;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,12 +14,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
 
 public class Multiplet extends AppCompatActivity {
 
     Intent i;
     String value;
+    String url = "http://rnafrabase.cs.put.poznan.pl/";
+    ProgressDialog muProgressDialog;
     String R1, R2, R3, ExM;
     String[] res_str1 = {"Any","A", "C", "G", "U", "a", "c", "g", "u"};
     String[] res_str2 = {"Any","A", "C", "G", "U", "a", "c", "g", "u"};
@@ -32,6 +42,8 @@ public class Multiplet extends AppCompatActivity {
         setContentView(R.layout.activity_multiplet);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Button search = (Button) findViewById(R.id.button5);
 
 
         Spinner spinnerR1 = (Spinner) findViewById(R.id.spinner22);
@@ -210,6 +222,14 @@ public class Multiplet extends AppCompatActivity {
             }
         });
 
+        search.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                // Execute Description AsyncTask
+
+                new Search().execute();
+            }
+        });
+
     }
 
     @Override
@@ -256,28 +276,55 @@ public class Multiplet extends AppCompatActivity {
                 startActivity(ijj);
                 return true;
             case R.id.menu_help:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Help.class);
                 startActivity(i);
-                i.putExtra(value, "Help");
                 return true;
             case R.id.menu_about:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), About.class);
                 startActivity(i);
-                i.putExtra(value, "About");
                 return true;
             case R.id.menu_contact:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Contact.class);
                 startActivity(i);
-                i.putExtra(value, "Contact");
                 return true;
             case R.id.menu_links:
-                i = new Intent(getApplicationContext(), New.class);
+                i = new Intent(getApplicationContext(), Links.class);
                 startActivity(i);
-                i.putExtra(value, "Links");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private class Search extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                Document document = Jsoup.connect(url).get();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            muProgressDialog = new ProgressDialog(Multiplet.this);
+            muProgressDialog.setTitle("RNA frabase");
+            muProgressDialog.setMessage("Searching...");
+            muProgressDialog.setIndeterminate(false);
+            muProgressDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+
+            muProgressDialog.dismiss();
+        }
+
     }
 
 }
